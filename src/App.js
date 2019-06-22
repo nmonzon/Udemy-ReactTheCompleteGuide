@@ -4,7 +4,7 @@ import './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
-  state =
+   state =
       {  //{ person: [] is a js object 
         persons: [
           { name: 'Max', age: 28},
