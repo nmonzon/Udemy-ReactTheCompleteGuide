@@ -57,31 +57,36 @@ const App = (props) => {
     cursor: 'pointer'
   }
   
+  let persons = null;
+
+  if (showPersons.showPersonsState) {
+    persons = (
+              <div>  
+                <Person 
+                  name={personState.persons[0].name}
+                  age={personState.persons[0].age}
+                />
+                <Person 
+                  name={personState.persons[1].name} 
+                  age={personState.persons[1].age}
+                  click={switchValuesHandler.bind(this, "Maxii!!!")}
+                  changed={nameChangedHandler}>My hobbiees: Racing 
+                </Person>
+                  
+                <Person 
+                  name={personState.persons[2].name} 
+                  age={personState.persons[2].age}
+                />
+              </div>
+              );
+  }
+
     return(//understanding JSX
     <div className="App">
       <h1>React</h1>
       <p>This is really working!</p>
       <button style={style} onClick={toogleHandlerPerson}>Toogle persons</button>
-      { 
-        showPersons.showPersonsState === true ? 
-          <div>
-            <Person 
-              name={personState.persons[0].name}
-              age={personState.persons[0].age}
-            />
-            <Person 
-              name={personState.persons[1].name} 
-              age={personState.persons[1].age}
-              click={switchValuesHandler.bind(this, "Maxii!!!")}
-              changed={nameChangedHandler}>My hobbiees: Racing 
-            </Person>
-              
-            <Person 
-              name={personState.persons[2].name} 
-              age={personState.persons[2].age}
-            />
-          </div> : null
-      }
+      {persons}    
     </div>
     );
   
