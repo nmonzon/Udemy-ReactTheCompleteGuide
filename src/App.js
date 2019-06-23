@@ -49,6 +49,12 @@ const App = (props) => {
     });
   }
 
+  const deletePersonHandler = (personIndex) =>{
+    const persons = personState.persons;
+    persons.splice(personIndex,1);
+    setPersonState({persons: persons});
+  }
+
   const style = {
     backgroundColor: 'white',
     border: '1px solid blue',
@@ -63,8 +69,8 @@ const App = (props) => {
     
     persons = (
               <div>
-                {personState.persons.map(person => {
-                  return <Person name={person.name} age={person.age}/>
+                {personState.persons.map((person, index)=> {
+                  return <Person click={() => deletePersonHandler(index)} name={person.name} age={person.age}/>
                 })}  
               </div>
     );
