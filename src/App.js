@@ -18,7 +18,7 @@ const App = (props) => {
 //console.log([statePerson, setPersonState]);
 
   const switchValuesHandler = (newName) => {
-      personState ({
+      setPersonState ({
         persons: [
           { name: newName, age: 28},
           { name: 'Manu', age: 29},
