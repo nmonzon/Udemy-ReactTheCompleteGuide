@@ -7,9 +7,9 @@ const App = (props) => {
    const [personState, setPersonState] = useState(
       {  //{ person: [] is a js object 
         persons: [
-          { name: 'Max', age: 28},
-          { name: 'Manu', age: 29},
-          { name: 'Stepanhie', age: 26}
+          { id: '1', name: 'Max', age: 28},
+          { id: '2', name: 'Manu', age: 29},
+          { id: '3', name: 'Stepanhie', age: 26}
         ]
         
       }
@@ -39,7 +39,7 @@ const App = (props) => {
     );
   }
 
-  const nameChangedHandler = (event) =>{
+  /*const nameChangedHandler = (event) =>{
     setPersonState( {
       persons: [
         { name: 'Max', age: 28},
@@ -47,10 +47,30 @@ const App = (props) => {
         { name: 'Stepanhie', age: 27}
       ]
     });
+  }*/
+
+  const onChangeInputHandler = (event, id) =>{
+    const personIndex = personState.persons.findIndex(p => {
+      return p.id === id;
+    });
+
+    const person = {
+      ...personState.persons[personIndex]
+    }
+    person.name = event.target.value;
+    
+    const persons = [...personState.persons];
+    persons[personIndex] = person;
+
+    setPersonState(
+      {persons: persons}
+    );
+    
   }
 
   const deletePersonHandler = (personIndex) =>{
-    const persons = personState.persons.slice();
+    //const persons = personState.persons.slice();
+    const persons = [...personState.persons];
     persons.splice(personIndex,1);
     setPersonState({persons: persons});
   }
@@ -70,7 +90,11 @@ const App = (props) => {
     persons = (
               <div>
                 {personState.persons.map((person, index)=> {
-                  return <Person click={() => deletePersonHandler(index)} name={person.name} age={person.age}/>
+                  return <Person click={() => deletePersonHandler(index)} 
+                                 name={person.name} 
+                                 age={person.age}
+                                 key={person.id}
+                                 changed={(event) => onChangeInputHandler(event, person.id)}/>
                 })}  
               </div>
     );
