@@ -21,7 +21,7 @@ const App = (props) => {
 
 //console.log([statePerson, setPersonState]);
 
-  const switchValuesHandler = (newName) => {
+  /*const switchValuesHandler = (newName) => {
       setPersonState ({
         persons: [
           { name: newName, age: 28},
@@ -30,7 +30,7 @@ const App = (props) => {
         ],
         otherValueState: otherValueState
       })
-  }
+  }*/
 
   const toogleHandlerPerson = () => {
     const currentShownPersons = showPersons.showPersonsState;
@@ -50,7 +50,7 @@ const App = (props) => {
   }
 
   const deletePersonHandler = (personIndex) =>{
-    const persons = personState.persons;
+    const persons = personState.persons.slice();
     persons.splice(personIndex,1);
     setPersonState({persons: persons});
   }
